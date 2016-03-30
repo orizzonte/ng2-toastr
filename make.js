@@ -35,7 +35,7 @@ function getSystemJsBundleConfig(cb) {
     baseURL: '..',
     transpiler: 'typescript',
     typescriptOptions: {
-      module: 'cjs'
+      module: 'system'
     },
     map: {
       typescript: path.resolve('node_modules/typescript/lib/typescript.js'),
