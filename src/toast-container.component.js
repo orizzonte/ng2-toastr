@@ -56,10 +56,11 @@ System.register(['angular2/core', './toast-options'], function(exports_1, contex
                         return toast.id !== toastId;
                     });
                 };
+                ToastContainer.prototype.removeToasts = function () {
+                    this.toasts = this.toasts.splice(0, this.toasts.length);
+                };
                 ToastContainer.prototype.dismiss = function (toast) {
-                    if (!this.autoDismiss) {
-                        this.removeToast(toast.id);
-                    }
+                    this.removeToast(toast.id);
                 };
                 ToastContainer.prototype.anyToast = function () {
                     return this.toasts.length > 0;

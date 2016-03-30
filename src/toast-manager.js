@@ -83,6 +83,13 @@ System.register(['angular2/core', './toast-container.component', './toast-option
                         }
                     }
                 };
+                ToastsManager.prototype.clearToasts = function () {
+                    if (this.container) {
+                        var instance = this.container.instance;
+                        instance.removeToasts();
+                        this.dispose();
+                    }
+                };
                 ToastsManager.prototype.dispose = function () {
                     this.container.dispose();
                     this.container = null;

@@ -48,11 +48,13 @@ export class ToastContainer {
       return toast.id !== toastId;
     });
   }
+  
+  removeToasts() {
+    this.toasts = this.toasts.splice(0, this.toasts.length);    
+  }
 
   dismiss(toast) {
-    if (!this.autoDismiss) {
-      this.removeToast(toast.id);
-    }
+    this.removeToast(toast.id);    
   }
 
   anyToast(): boolean {
