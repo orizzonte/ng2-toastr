@@ -207,7 +207,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
           });
         };
         ToastContainer.prototype.removeToasts = function() {
-          this.toasts = this.toasts.splice(0, this.toasts.length);
+          this.toasts.splice(0, this.toasts.length);
         };
         ToastContainer.prototype.dismiss = function(toast) {
           this.removeToast(toast.id);

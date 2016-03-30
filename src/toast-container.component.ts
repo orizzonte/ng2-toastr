@@ -50,7 +50,7 @@ export class ToastContainer {
   }
   
   removeToasts() {
-    this.toasts = this.toasts.splice(0, this.toasts.length);    
+    this.toasts.splice(0, this.toasts.length);    
   }
 
   dismiss(toast) {

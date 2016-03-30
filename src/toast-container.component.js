@@ -57,7 +57,7 @@ System.register(['angular2/core', './toast-options'], function(exports_1, contex
                     });
                 };
                 ToastContainer.prototype.removeToasts = function () {
-                    this.toasts = this.toasts.splice(0, this.toasts.length);
+                    this.toasts.splice(0, this.toasts.length);
                 };
                 ToastContainer.prototype.dismiss = function (toast) {
                     this.removeToast(toast.id);
