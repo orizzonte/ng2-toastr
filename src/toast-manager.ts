@@ -1,99 +1,40 @@
-import {Injectable, ComponentRef, ElementRef, DynamicComponentLoader, ApplicationRef,
-  Inject, Injector, Optional, provide, IterableDiffers} from 'angular2/core';
-import {ToastContainer} from './toast-container.component';
-import {ToastOptions} from './toast-options';
+import {Injectable, Output, EventEmitter} from 'angular2/core';
 import {Toast} from './toast';
 
 @Injectable()
 export class ToastsManager {
-  container: ComponentRef;
-  private options = {
-    autoDismiss: true,
-    toastLife: 3000,
-  };
-  private index = 0;
+    @Output() onAddToast: EventEmitter<Toast> = new EventEmitter()
+    @Output() onclearToasts = new EventEmitter();
 
-  constructor(private loader: DynamicComponentLoader,
-              private appRef: ApplicationRef,
-              @Optional() @Inject(ToastOptions) options) {
-    if (options) {
-      Object.assign(this.options, options);
+    containerLoaded = false;
+
+    show(toast: Toast) {
+        if (this.containerLoaded)
+            this.onAddToast.emit(toast);
     }
-  }
 
-  show(toast: Toast) {
-    if (!this.container) {
-      // a hack to get app element in shadow dom
-      let appElement: ElementRef = this.appRef['_rootComponents'][0].location;
-
-      let bindings = Injector.resolve([
-        provide(ToastOptions, { useValue: <ToastOptions>this.options })
-      ]);
-
-      this.loader.loadNextToLocation(ToastContainer, appElement, bindings)
-        .then((ref) => {
-          this.container = ref;
-          this.setupToast(toast);
-        });
-    } else {
-      this.setupToast(toast);
+    clearToasts() {
+        if (this.containerLoaded)
+            this.onclearToasts.emit(null);
     }
-  }
 
-  createTimeout(toastId: number) {
-    setTimeout(() => {
-      this.clearToast(toastId);
-    }, this.options.toastLife);
-  }
-
-  setupToast(toast: Toast) {
-    toast.id = ++this.index;
-    this.container.instance.addToast(toast);
-    if (this.options.autoDismiss) {
-      this.createTimeout(toast.id);
+    error(message: string, title?: string) {
+        let toast = new Toast('error', message, title);
+        this.show(toast);
     }
-  }
 
-  clearToast(toastId: number) {
-    if (this.container) {
-      let instance = this.container.instance;
-      instance.removeToast(toastId);
-      if (!instance.anyToast()) {
-        this.dispose();
-      }
+    info(message: string, title?: string) {
+        let toast = new Toast('info', message, title);
+        this.show(toast);
     }
-  }
-  
-  clearToasts() {
-    if (this.container) {
-      let instance = this.container.instance;
-      instance.removeToasts();
-      this.dispose();      
+
+    success(message: string, title?: string) {
+        let toast = new Toast('success', message, title);
+        this.show(toast);
     }
-  }
 
-  dispose() {
-    this.container.dispose();
-    this.container = null;
-  }
-
-  error(message: string, title?: string) {
-    let toast = new Toast('error', message, title);
-    this.show(toast);
-  }
-
-  info(message: string, title?: string) {
-    let toast = new Toast('info', message, title);
-    this.show(toast);
-  }
-
-  success(message: string, title?: string) {
-    let toast = new Toast('success', message, title);
-    this.show(toast);
-  }
-
-  warning(message: string, title?: string) {
-    let toast = new Toast('warning', message, title);
-    this.show(toast);
-  }
+    warning(message: string, title?: string) {
+        let toast = new Toast('warning', message, title);
+        this.show(toast);
+    }
 }

@@ -1,18 +1,11 @@
-import { ComponentRef, DynamicComponentLoader, ApplicationRef } from 'angular2/core';
+import { EventEmitter } from 'angular2/core';
 import { Toast } from './toast';
 export declare class ToastsManager {
-    private loader;
-    private appRef;
-    container: ComponentRef;
-    private options;
-    private index;
-    constructor(loader: DynamicComponentLoader, appRef: ApplicationRef, options: any);
+    onAddToast: EventEmitter<Toast>;
+    onclearToasts: EventEmitter<{}>;
+    containerLoaded: boolean;
     show(toast: Toast): void;
-    createTimeout(toastId: number): void;
-    setupToast(toast: Toast): void;
-    clearToast(toastId: number): void;
     clearToasts(): void;
-    dispose(): void;
     error(message: string, title?: string): void;
     info(message: string, title?: string): void;
     success(message: string, title?: string): void;

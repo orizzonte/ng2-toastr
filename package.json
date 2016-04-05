@@ -4,7 +4,7 @@
   "description": "bootstrap style of toast for angular 2",
   "main": "index.js",
   "scripts": {
-    "prepublish": "gulp clean && ./node_modules/.bin/tsc && node make.js && gulp bundle-css",
+    "prepublish": "gulp clean && tsc && node make.js && gulp bundle-css",
     "build:prod": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
     "build:dev": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "tsc": "tsc",

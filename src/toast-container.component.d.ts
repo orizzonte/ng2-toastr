@@ -1,5 +1,8 @@
+import { OnInit } from 'angular2/core';
 import { Toast } from './toast';
-export declare class ToastContainer {
+import { ToastsManager } from './toast-manager';
+export declare class ToastContainer implements OnInit {
+    private mgr;
     position: string;
     messageClass: string;
     titleClass: string;
@@ -7,7 +10,10 @@ export declare class ToastContainer {
     toasts: Toast[];
     maxShown: number;
     autoDismiss: boolean;
-    constructor(options: any);
+    lastId: number;
+    toastLife: number;
+    constructor(mgr: ToastsManager, options: any);
+    ngOnInit(): void;
     addToast(toast: Toast): void;
     removeToast(toastId: number): void;
     removeToasts(): void;
