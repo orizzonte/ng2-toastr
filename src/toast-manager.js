@@ -25,15 +25,12 @@ System.register(['angular2/core', './toast'], function(exports_1, context_1) {
                 function ToastsManager() {
                     this.onAddToast = new core_1.EventEmitter();
                     this.onclearToasts = new core_1.EventEmitter();
-                    this.containerLoaded = false;
                 }
                 ToastsManager.prototype.show = function (toast) {
-                    if (this.containerLoaded)
-                        this.onAddToast.emit(toast);
+                    this.onAddToast.emit(toast);
                 };
                 ToastsManager.prototype.clearToasts = function () {
-                    if (this.containerLoaded)
-                        this.onclearToasts.emit(null);
+                    this.onclearToasts.emit(null);
                 };
                 ToastsManager.prototype.error = function (message, title) {
                     var toast = new toast_1.Toast('error', message, title);

@@ -4,17 +4,13 @@ import {Toast} from './toast';
 @Injectable()
 export class ToastsManager {
     @Output() onAddToast: EventEmitter<Toast> = new EventEmitter()
-    @Output() onclearToasts = new EventEmitter();
+    @Output() onclearToasts = new EventEmitter();   
 
-    containerLoaded = false;
-
-    show(toast: Toast) {
-        if (this.containerLoaded)
+    show(toast: Toast) {       
             this.onAddToast.emit(toast);
     }
 
-    clearToasts() {
-        if (this.containerLoaded)
+    clearToasts() {      
             this.onclearToasts.emit(null);
     }
 
@@ -36,5 +32,5 @@ export class ToastsManager {
     warning(message: string, title?: string) {
         let toast = new Toast('warning', message, title);
         this.show(toast);
-    }
+    }  
 }

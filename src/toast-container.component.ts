@@ -14,7 +14,7 @@ import {ToastsManager} from './toast-manager';
     </div>
     `,
 })
-export class ToastContainer implements OnInit {
+export class ToastContainer {
     position = 'absolute';
     messageClass = 'toast-message';
     titleClass = 'toast-title';
@@ -29,13 +29,10 @@ export class ToastContainer implements OnInit {
         if (options) {
             Object.assign(this, options);
         }
-    }
-
-    ngOnInit() {
+        
         this.mgr.onAddToast.subscribe(toast => this.addToast(toast));
-        this.mgr.onclearToasts.subscribe(this.removeToasts());
-        this.mgr.containerLoaded = true;
-    }
+        this.mgr.onclearToasts.subscribe(x => this.removeToasts()); 
+    }  
 
 
     addToast(toast: Toast) {

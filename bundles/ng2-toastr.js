@@ -51,15 +51,12 @@ System.register("ng2-toastr/src/toast-manager", ["angular2/core", "./toast"], fu
         function ToastsManager() {
           this.onAddToast = new core_1.EventEmitter();
           this.onclearToasts = new core_1.EventEmitter();
-          this.containerLoaded = false;
         }
         ToastsManager.prototype.show = function(toast) {
-          if (this.containerLoaded)
-            this.onAddToast.emit(toast);
+          this.onAddToast.emit(toast);
         };
         ToastsManager.prototype.clearToasts = function() {
-          if (this.containerLoaded)
-            this.onclearToasts.emit(null);
+          this.onclearToasts.emit(null);
         };
         ToastsManager.prototype.error = function(message, title) {
           var toast = new toast_1.Toast('error', message, title);
@@ -126,6 +123,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
     execute: function() {
       ToastContainer = (function() {
         function ToastContainer(mgr, options) {
+          var _this = this;
           this.mgr = mgr;
           this.position = 'absolute';
           this.messageClass = 'toast-message';
@@ -139,15 +137,13 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
           if (options) {
             Object.assign(this, options);
           }
-        }
-        ToastContainer.prototype.ngOnInit = function() {
-          var _this = this;
           this.mgr.onAddToast.subscribe(function(toast) {
             return _this.addToast(toast);
           });
-          this.mgr.onclearToasts.subscribe(this.removeToasts());
-          this.mgr.containerLoaded = true;
-        };
+          this.mgr.onclearToasts.subscribe(function(x) {
+            return _this.removeToasts();
+          });
+        }
         ToastContainer.prototype.addToast = function(toast) {
           var _this = this;
           toast.id = this.lastId++;

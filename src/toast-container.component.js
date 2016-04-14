@@ -29,6 +29,7 @@ System.register(['angular2/core', './toast-options', './toast-manager'], functio
         execute: function() {
             ToastContainer = (function () {
                 function ToastContainer(mgr, options) {
+                    var _this = this;
                     this.mgr = mgr;
                     this.position = 'absolute';
                     this.messageClass = 'toast-message';
@@ -42,13 +43,9 @@ System.register(['angular2/core', './toast-options', './toast-manager'], functio
                     if (options) {
                         Object.assign(this, options);
                     }
-                }
-                ToastContainer.prototype.ngOnInit = function () {
-                    var _this = this;
                     this.mgr.onAddToast.subscribe(function (toast) { return _this.addToast(toast); });
-                    this.mgr.onclearToasts.subscribe(this.removeToasts());
-                    this.mgr.containerLoaded = true;
-                };
+                    this.mgr.onclearToasts.subscribe(function (x) { return _this.removeToasts(); });
+                }
                 ToastContainer.prototype.addToast = function (toast) {
                     var _this = this;
                     toast.id = this.lastId++;
