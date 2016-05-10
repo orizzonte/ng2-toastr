@@ -1,4 +1,4 @@
-import {Component, Input, Optional, Inject, OnInit} from 'angular2/core';
+import {Component, Input, Optional, Inject, OnInit} from '@angular/core';
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {ToastsManager} from './toast-manager';
@@ -7,7 +7,7 @@ import {ToastsManager} from './toast-manager';
     selector: 'toast-container',
     template: `
     <div id="toast-container" [style.position]="position" class="{{positionClass}}">
-      <div *ngFor="#toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
+      <div *ngFor="let toast of toasts" class="toast-{{toast.type}}" (click)="dismiss(toast)">
         <div *ngIf="toast.title" class="{{titleClass}}">{{toast.title}}</div>
         <div class="{{messageClass}}">{{toast.message}}</div>
       </div>

@@ -90,8 +90,8 @@ CSS class for title within toast.
 Use Angular 2 dependency inject for custom configurations. Here is code when you bootstrap your app:
 
 ```javascript
-    import {provide} from 'angular2/core';
-    import {ToastOptions} from "ng2-toastr/ng2-toastr";
+    import {provide} from '@angular2/core';
+    import {ToastOptions} from "@ng2-toastr/ng2-toastr";
     
     let options = {
       autoDismiss: false,

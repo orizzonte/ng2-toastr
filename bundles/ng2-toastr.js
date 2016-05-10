@@ -18,7 +18,7 @@ System.register("ng2-toastr/src/toast", [], function(exports_1, context_1) {
   };
 });
 
-System.register("ng2-toastr/src/toast-manager", ["angular2/core", "./toast"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -84,7 +84,7 @@ System.register("ng2-toastr/src/toast-manager", ["angular2/core", "./toast"], fu
   };
 });
 
-System.register("ng2-toastr/src/toast-container.component", ["angular2/core", "./toast-options", "./toast-manager"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "./toast-manager"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -190,7 +190,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
         };
         ToastContainer = __decorate([core_1.Component({
           selector: 'toast-container',
-          template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"#toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
+          template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
         }), __param(1, core_1.Optional()), __param(1, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [toast_manager_1.ToastsManager, Object])], ToastContainer);
         return ToastContainer;
       }());
@@ -199,7 +199,7 @@ System.register("ng2-toastr/src/toast-container.component", ["angular2/core", ".
   };
 });
 
-System.register("ng2-toastr/src/toast-options", ["angular2/core"], function(exports_1, context_1) {
+System.register("ng2-toastr/src/toast-options", ["@angular/core"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
   var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
@@ -261,3 +261,5 @@ System.register("ng2-toastr/ng2-toastr", ["./src/toast", "./src/toast-manager", 
     execute: function() {}
   };
 });
+
+//# sourceMappingURL=ng2-toastr.js.map

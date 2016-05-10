@@ -1,4 +1,4 @@
-import { EventEmitter } from 'angular2/core';
+import { EventEmitter } from '@angular/core';
 import { Toast } from './toast';
 export declare class ToastsManager {
     onAddToast: EventEmitter<Toast>;
