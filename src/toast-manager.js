@@ -50,7 +50,7 @@ System.register(['@angular/core', './toast'], function(exports_1, context_1) {
                 };
                 __decorate([
                     core_1.Output(), 
-                    __metadata('design:type', core_1.EventEmitter)
+                    __metadata('design:type', Object)
                 ], ToastsManager.prototype, "onAddToast", void 0);
                 __decorate([
                     core_1.Output(), 

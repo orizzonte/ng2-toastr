@@ -74,7 +74,7 @@ System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast"], fu
           var toast = new toast_1.Toast('warning', message, title);
           this.show(toast);
         };
-        __decorate([core_1.Output(), __metadata('design:type', core_1.EventEmitter)], ToastsManager.prototype, "onAddToast", void 0);
+        __decorate([core_1.Output(), __metadata('design:type', Object)], ToastsManager.prototype, "onAddToast", void 0);
         __decorate([core_1.Output(), __metadata('design:type', Object)], ToastsManager.prototype, "onclearToasts", void 0);
         ToastsManager = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], ToastsManager);
         return ToastsManager;
