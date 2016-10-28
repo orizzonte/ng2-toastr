@@ -21,22 +21,6 @@ System.register("ng2-toastr/src/toast", [], function(exports_1, context_1) {
 System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
-  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-      r = Reflect.decorate(decorators, target, key, desc);
-    else
-      for (var i = decorators.length - 1; i >= 0; i--)
-        if (d = decorators[i])
-          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-  };
-  var __metadata = (this && this.__metadata) || function(k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-      return Reflect.metadata(k, v);
-  };
   var core_1,
       toast_1;
   var ToastsManager;
@@ -74,9 +58,12 @@ System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast"], fu
           var toast = new toast_1.Toast('warning', message, title);
           this.show(toast);
         };
-        __decorate([core_1.Output(), __metadata('design:type', Object)], ToastsManager.prototype, "onAddToast", void 0);
-        __decorate([core_1.Output(), __metadata('design:type', Object)], ToastsManager.prototype, "onclearToasts", void 0);
-        ToastsManager = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [])], ToastsManager);
+        ToastsManager.decorators = [{type: core_1.Injectable}];
+        ToastsManager.ctorParameters = [];
+        ToastsManager.propDecorators = {
+          'onAddToast': [{type: core_1.Output}],
+          'onclearToasts': [{type: core_1.Output}]
+        };
         return ToastsManager;
       }());
       exports_1("ToastsManager", ToastsManager);
@@ -87,27 +74,6 @@ System.register("ng2-toastr/src/toast-manager", ["@angular/core", "./toast"], fu
 System.register("ng2-toastr/src/toast-container.component", ["@angular/core", "./toast-options", "./toast-manager"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
-  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-      r = Reflect.decorate(decorators, target, key, desc);
-    else
-      for (var i = decorators.length - 1; i >= 0; i--)
-        if (d = decorators[i])
-          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-  };
-  var __metadata = (this && this.__metadata) || function(k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-      return Reflect.metadata(k, v);
-  };
-  var __param = (this && this.__param) || function(paramIndex, decorator) {
-    return function(target, key) {
-      decorator(target, key, paramIndex);
-    };
-  };
   var core_1,
       toast_options_1,
       toast_manager_1;
@@ -188,10 +154,20 @@ System.register("ng2-toastr/src/toast-container.component", ["@angular/core", ".
           }
           return null;
         };
-        ToastContainer = __decorate([core_1.Component({
-          selector: 'toast-container',
-          template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
-        }), __param(1, core_1.Optional()), __param(1, core_1.Inject(toast_options_1.ToastOptions)), __metadata('design:paramtypes', [toast_manager_1.ToastsManager, Object])], ToastContainer);
+        ToastContainer.decorators = [{
+          type: core_1.Component,
+          args: [{
+            selector: 'toast-container',
+            template: "\n    <div id=\"toast-container\" [style.position]=\"position\" class=\"{{positionClass}}\">\n      <div *ngFor=\"let toast of toasts\" class=\"toast-{{toast.type}}\" (click)=\"dismiss(toast)\">\n        <div *ngIf=\"toast.title\" class=\"{{titleClass}}\">{{toast.title}}</div>\n        <div class=\"{{messageClass}}\">{{toast.message}}</div>\n      </div>\n    </div>\n    "
+          }]
+        }];
+        ToastContainer.ctorParameters = [{type: toast_manager_1.ToastsManager}, {
+          type: undefined,
+          decorators: [{type: core_1.Optional}, {
+            type: core_1.Inject,
+            args: [toast_options_1.ToastOptions]
+          }]
+        }];
         return ToastContainer;
       }());
       exports_1("ToastContainer", ToastContainer);
@@ -202,22 +178,6 @@ System.register("ng2-toastr/src/toast-container.component", ["@angular/core", ".
 System.register("ng2-toastr/src/toast-options", ["@angular/core"], function(exports_1, context_1) {
   "use strict";
   var __moduleName = context_1 && context_1.id;
-  var __decorate = (this && this.__decorate) || function(decorators, target, key, desc) {
-    var c = arguments.length,
-        r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-        d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-      r = Reflect.decorate(decorators, target, key, desc);
-    else
-      for (var i = decorators.length - 1; i >= 0; i--)
-        if (d = decorators[i])
-          r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-  };
-  var __metadata = (this && this.__metadata) || function(k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-      return Reflect.metadata(k, v);
-  };
   var core_1;
   var ToastOptions;
   return {
@@ -229,7 +189,8 @@ System.register("ng2-toastr/src/toast-options", ["@angular/core"], function(expo
         function ToastOptions(options) {
           Object.assign(this, options);
         }
-        ToastOptions = __decorate([core_1.Injectable(), __metadata('design:paramtypes', [Object])], ToastOptions);
+        ToastOptions.decorators = [{type: core_1.Injectable}];
+        ToastOptions.ctorParameters = [{type: Object}];
         return ToastOptions;
       }());
       exports_1("ToastOptions", ToastOptions);
